@@ -38,6 +38,8 @@ The target architecture has four building blocks:
 
 This produces an internally publishable agent for Teams or Microsoft 365 Copilot that accesses Jira securely in the context of the signed-in user.[6][7]
 
+![High-level architecture and request flow](./assets/high-level-flow.png)
+
 ## Prerequisites
 
 You need:
@@ -102,6 +104,8 @@ read:jira-work read:jira-user write:jira-work offline_access
 ## Step 3: Add the Redirect URL
 
 Save the connector once so Power Platform generates its unique redirect URL.[1] Then copy that redirect URL back into the Atlassian Developer Console. Until that is done, the OAuth flow will not complete successfully.
+
+![Environment setup across Atlassian, Power Platform, and Jira Cloud](./assets/environment-setup.png)
 
 ## Step 4: Model the Jira Operations in the Connector
 
@@ -277,6 +281,8 @@ On first use, the user typically sees a prompt to create a connection for the cu
 
 Because `offline_access` is included, the connection can later renew tokens in the background through the refresh-token flow instead of forcing repeated full sign-ins.[2]
 
+![Sequence of first-time sign-in and Jira issue retrieval](./assets/sequence-diagram.png)
+
 ## Why This Approach Is More Secure Than a Service Account
 
 The main architectural advantage is the security model. A service account centralizes all agent activity behind one technical identity. That may be simpler to operate, but it weakens least-privilege and traceability.
@@ -329,3 +335,7 @@ Combined with a fixed `cloudId`, curated `fields`, business-focused JQL defaults
 [11]: https://learn.microsoft.com/en-us/microsoft-copilot-studio/add-tools-custom-agent "Add tools to custom agents - Microsoft Copilot Studio"
 [12]: https://learn.microsoft.com/en-us/microsoft-copilot-studio/advanced-connectors "Use connectors in Copilot Studio agents"
 [13]: https://learn.microsoft.com/en-us/microsoft-copilot-studio/admin-share-bots "Share agents with other users - Microsoft Copilot Studio"
+
+---
+
+This guide was authored and validated by [Joris Kalz](https://www.linkedin.com/in/joris-kalz/) and [George Dimitrakos](https://www.linkedin.com/in/george-dimitrakos/).
