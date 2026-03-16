@@ -6,6 +6,8 @@ In that model, the employee can ask things like: "What is the status of my lapto
 
 That is the real benefit of connecting Jira to Copilot Studio: the agent becomes a self-service layer on top of the existing IT support process, while Jira remains the system of record underneath. Employees get quicker answers and less tool-switching, while support teams reduce repetitive status requests and manual triage conversations.
 
+![Employee self-service with Copilot Studio accessing Jira](./assets/CopilotStudioAgentAccessJira.gif)
+
 To make that work well in real customer environments, the integration usually cannot stay generic for long. A standard Jira connector can work for a quick prototype, but it often becomes limiting once Jira is customized with custom fields, project-specific required attributes, and tailored workflows.
 
 A custom connector is a better fit because it lets you model the Jira REST API around the customer’s actual data model instead of forcing the agent into a generic integration shape. Microsoft positions custom connectors exactly for this kind of REST-based integration work.[1]
