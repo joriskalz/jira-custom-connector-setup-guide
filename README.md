@@ -1,10 +1,14 @@
 # Secure Jira Integration in Copilot Studio Using a Custom Connector and OAuth 2.0 3LO
 
-Many internal agents in Microsoft Copilot Studio need access to Jira data: showing a user their own tickets, summarizing issues, returning status information, or creating new issues. A standard Jira connector can work for a quick prototype, but it often becomes limiting in real customer environments where Jira is heavily customized with custom fields, project-specific required attributes, and tailored workflows.
+One of the most practical internal use cases for Microsoft Copilot Studio is an IT help desk agent that can answer questions about Jira tickets directly in the flow of work. Instead of sending employees to Jira to look up their own incidents, service requests, or open support tasks, the agent can tell them what is assigned to them, summarize current status, explain recent updates, or even create a new issue without forcing them to switch tools.
+
+That improves the user experience in a very concrete way: faster answers, less manual navigation, and less back-and-forth with the help desk for simple status questions. A good internal agent can become the front door to Jira for everyday support interactions, while Jira remains the system of record underneath.
+
+To make that work well in real customer environments, the integration usually cannot stay generic for long. A standard Jira connector can work for a quick prototype, but it often becomes limiting once Jira is customized with custom fields, project-specific required attributes, and tailored workflows.
 
 A custom connector is a better fit because it lets you model the Jira REST API around the customer’s actual data model instead of forcing the agent into a generic integration shape. Microsoft positions custom connectors exactly for this kind of REST-based integration work.[1]
 
-The second design choice is authentication. A shared service account is operationally convenient, but it weakens least-privilege and auditability because every user effectively acts through the same identity. Atlassian OAuth 2.0 three-legged OAuth (3LO) is the cleaner design for internal agents because the app accesses Jira on behalf of the signed-in user.[2] That means the agent only sees what the employee is already allowed to see in Jira.
+The second design choice is authentication. A shared service account is operationally convenient, but it weakens least-privilege and auditability because every user effectively acts through the same identity. Atlassian OAuth 2.0 three-legged OAuth (3LO) is the cleaner design for internal agents because the app accesses Jira on behalf of the signed-in user.[2] That means the help desk agent only sees what the employee is already allowed to see in Jira.
 
 This repository contains:
 
