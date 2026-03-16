@@ -14,8 +14,8 @@ The second design choice is authentication. A shared service account is operatio
 
 This repository contains:
 
-- A full implementation guide in this `README.md`
-- A linked Swagger / OpenAPI example at [`openapi/jira-cloud-custom-connector.swagger.yaml`](./openapi/jira-cloud-custom-connector.swagger.yaml)
+- A practical getting-started guide in this `README.md`
+- An initial Swagger / OpenAPI sample configuration at [`openapi/jira-cloud-custom-connector.swagger.yaml`](./openapi/jira-cloud-custom-connector.swagger.yaml)
 
 ## Why the Standard Connector Is Often Not Enough
 
