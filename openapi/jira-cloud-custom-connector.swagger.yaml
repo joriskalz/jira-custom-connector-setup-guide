@@ -1,0 +1,123 @@
+swagger: '2.0'
+info:
+  title: JiraCloud
+  description: ''
+  version: '1.0'
+host: api.atlassian.com
+basePath: /
+schemes:
+  - https
+consumes: []
+produces: []
+paths:
+  /oauth/token/accessible-resources:
+    get:
+      responses:
+        default:
+          description: default
+          schema: {}
+      summary: Get accessible Jira resources
+      description: >-
+        Returns the Atlassian cloud resources the signed-in user authorized for
+        this app.
+      operationId: GetAccessibleResources
+      x-ms-visibility: important
+      parameters:
+        - name: Accept
+          in: header
+          required: false
+          type: string
+  /ex/jira/{cloudId}/rest/api/3/search/jql:
+    get:
+      responses:
+        default:
+          description: default
+          schema: {}
+      summary: Get my Jira issues
+      description: Searches Jira issues for the authorized user.
+      operationId: GetMyIssues
+      x-ms-visibility: important
+      parameters:
+        - name: cloudId
+          in: path
+          required: true
+          type: string
+        - name: jql
+          in: query
+          required: true
+          type: string
+          default: assignee = currentUser()
+        - name: fields
+          in: query
+          required: true
+          type: string
+          default: summary,status,assignee,priority,created,updated
+        - name: Accept
+          in: header
+          required: false
+          type: string
+  /ex/jira/{cloudId}/rest/api/3/issue:
+    post:
+      responses:
+        default:
+          description: default
+          schema: {}
+      x-ms-visibility: important
+      summary: Create Jira issue
+      description: Creates a new Jira issue in the specified project.
+      operationId: CreateIssue
+      parameters:
+        - name: cloudId
+          in: path
+          required: true
+          type: string
+        - name: Accept
+          in: header
+          required: false
+          type: string
+        - name: Content-Type
+          in: header
+          required: false
+          type: string
+        - name: body
+          in: body
+          required: false
+          schema:
+            type: object
+            properties:
+              fields:
+                type: object
+                properties:
+                  project:
+                    type: object
+                    properties:
+                      key:
+                        type: string
+                        description: key
+                    description: project
+                  summary:
+                    type: string
+                    description: summary
+                  issuetype:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        description: name
+                    description: issuetype
+                description: fields
+definitions: {}
+parameters: {}
+responses: {}
+security:
+  - oauth2-auth:
+      - "read:jira-work write:jira-work read:jira-user offline_access"
+tags: []
+securityDefinitions:
+  oauth2-auth:
+    type: oauth2
+    flow: accessCode
+    authorizationUrl: https://auth.atlassian.com/authorize
+    tokenUrl: https://auth.atlassian.com/oauth/token
+    scopes:
+      "read:jira-work write:jira-work read:jira-user offline_access": "read:jira-work write:jira-work read:jira-user offline_access"
